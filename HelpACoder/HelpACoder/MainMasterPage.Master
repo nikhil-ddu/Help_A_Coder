@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMasterPage.master.cs" Inherits="HelpACoder.MainMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
+<link rel="stylesheet" href="css/animate.min.css"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="w3.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/signin.css"  />
+    <link rel="stylesheet" href="css/abc.css" /> 
+    <link rel="stylesheet" href="css/grid.css" />
+    <script src="Content/js/jquery-3.1.1.min.js" ></script>
+    <script src="Content/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+             <a class="navbar-brand r navbar-left"><span><img height="36px"style="position:absolute;left:1%;top:10px" width="100px" src="images/mainlogo.png" /></span></a>
+          <a class="navbar-brand r" style="color:white" href="#"> <span>Help A Coder</span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li ><a href="contests.aspx">Upcoming Contests</a></li>
+               <li><a href="allproblems.aspx">All Problems</a></li>
+              <li ><a href="displayprobleminfo.aspx">Display Problem Info</a></li>
+            <li ><a href="findproblems.aspx">Find Problems</a></li>
+             
+              <li ><a href="tutorials.aspx">Tutorials</a></li>
+            <li><a href="contactus.aspx">Contact Us</a></li>
+
+           
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,69 @@
+.myGridStyle
+        {
+        }
+        
+        .myGridStyle tr th
+        {
+            padding: 8px;
+            color: white;
+            border: 1px solid black;
+        }
+        
+        
+        .myGridStyle tr:nth-child(even)
+        {
+            background-color: #E1FFEF;
+        }
+        
+        .myGridStyle tr:nth-child(odd)
+        {
+            background-color: #00C157;
+        }
+        
+        .myGridStyle td
+        {
+            padding: 8px; /*border:1px solid yellow; Use when you want to hide last row border (before it make ShowGridlines=None*/
+        }
+        
+        .myGridStyle tr:last-child td
+        {
+        }
+        
+        
+        
+        .paging
+        {
+        }
+        
+        .paging a
+        {
+            background-color: #00C157;
+            padding: 5px 7px;
+            text-decoration: none;
+            border: 1px solid #00C157;
+        }
+        
+        .paging a:hover
+        {
+            background-color: #E1FFEF;
+            color: #00C157;
+            border: 1px solid #00C157;
+        }
+        
+        .paging span
+        {
+            background-color: #E1FFEF;
+            padding: 5px 7px;
+            color: #00C157;
+            border: 1px solid #00C157;
+        }
+        
+        tr.paging
+        {
+            background: none !important;
+        }
+        
+        tr.paging tr
+        {
+            background: none !important;
+        }
