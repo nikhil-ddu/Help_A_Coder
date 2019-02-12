@@ -12,16 +12,16 @@
     });
 </script>
 
-<link rel="stylesheet" href="css/animate.min.css"/>
-    <link rel="stylesheet" href="css/animate.css"/>
-    <link rel="stylesheet" href="css/StyleSheet1.css" />
+<link rel="stylesheet" href="Content/css/animate.min.css"/>
+    <link rel="stylesheet" href="Content/css/animate.css"/>
+    <link rel="stylesheet" href="Content/css/StyleSheet1.css" />
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="w3.css" />
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="css/theme.css" />
-    <link rel="stylesheet" href="css/signin.css"  />
-    <link rel="stylesheet" href="css/abc.css" /> 
-    <link rel="stylesheet" href="css/grid.css" />
+    <link rel="stylesheet" href="Content/w3.css" />
+    <link rel="stylesheet" href="Content/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="Content/css/theme.css" />
+    <link rel="stylesheet" href="Content/css/signin.css"  />
+    <link rel="stylesheet" href="Content/css/abc.css" /> 
+    <link rel="stylesheet" href="Content/css/grid.css" />
     <script src="Content/js/jquery-3.1.1.min.js" ></script>
     <script src="Content/js/bootstrap.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">

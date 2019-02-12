@@ -1,12 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using System.Runtime.Serialization.Json;
 using System.Net.Http;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace HelpACoder
 {
@@ -56,7 +52,7 @@ namespace HelpACoder
         {
             try
             {
-                var response = await client.GetAsync("http://webservices-dhavalmehta.rhcloud.com/webapi/problems/" + id);
+                var response = await client.GetAsync("https://web-crawler-java.herokuapp.com/webapi/problems/" + id);
                 if (response.IsSuccessStatusCode)
                 {
                     Image1.Visible = true;
@@ -70,17 +66,17 @@ namespace HelpACoder
 
                     if (arr.platform == "Codeforces")
                     {
-                        Image1.ImageUrl = "~/images/codeforces_logo.png";
+                        Image1.ImageUrl = "~/Content/images/codeforces_logo.png";
 
                     }
                     else if (arr.platform == "HackerEarth")
                     {
-                        Image1.ImageUrl = "~/images/hackerearth_logo.png";
+                        Image1.ImageUrl = "~/Content/images/hackerearth_logo.png";
 
                     }
                     else if (arr.platform == "Spoj")
                     {
-                        Image1.ImageUrl = "~/images/spoj_logo.png";
+                        Image1.ImageUrl = "~/Content/images/spoj_logo.png";
                     }
                     Label1.Text = "ID :" + arr.id.ToString();
                     Label2.Text = "TITLE :" + arr.title;
@@ -132,7 +128,9 @@ namespace HelpACoder
                 }
                 
             }
+#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch(Exception e)
+#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong please try again later!');", true);
             }
@@ -146,7 +144,9 @@ namespace HelpACoder
             {
                 id = int.Parse(s);
             }
+#pragma warning disable CS0168 // The variable 'ee' is declared but never used
             catch (Exception ee)
+#pragma warning restore CS0168 // The variable 'ee' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Enter Valid Id');", true);
             }

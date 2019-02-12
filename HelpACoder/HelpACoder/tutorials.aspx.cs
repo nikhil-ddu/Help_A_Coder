@@ -29,7 +29,7 @@ namespace HelpACoder
         {
             try
             {
-                var response = await client.GetAsync("http://webservices-dhavalmehta.rhcloud.com/webapi/tutorials/" + DropDownList1.SelectedItem.Text);
+                var response = await client.GetAsync("https://web-crawler-java.herokuapp.com/webapi/tutorials/" + DropDownList1.SelectedItem.Text);
                 if (response.IsSuccessStatusCode)
                 {
                     string responsestr = await response.Content.ReadAsStringAsync();
@@ -43,7 +43,9 @@ namespace HelpACoder
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
                 }
             }
+#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
+#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
             }
@@ -52,7 +54,7 @@ namespace HelpACoder
         {
             try
             {
-                var response = await client.GetAsync("http://webservices-dhavalmehta.rhcloud.com/webapi/tutorials");
+                var response = await client.GetAsync("https://web-crawler-java.herokuapp.com/webapi/tutorials");
                 if (response.IsSuccessStatusCode)
                 {
                     string responsestr = await response.Content.ReadAsStringAsync();
@@ -67,7 +69,9 @@ namespace HelpACoder
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Enter Valid Information');", true);
                 }
             }
+#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
+#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
             }

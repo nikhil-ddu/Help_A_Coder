@@ -27,9 +27,9 @@ namespace HelpACoder
         }
         private async void GetContestsDetails()
         {
-            try
-            {
-                var response = await client.GetAsync("http://webservices-dhavalmehta.rhcloud.com/webapi/contests");
+          //  try
+           // {
+                var response = await client.GetAsync("https://web-crawler-java.herokuapp.com/webapi/contests");
                 if (response.IsSuccessStatusCode)
                 {
                     string responsestr = await response.Content.ReadAsStringAsync();
@@ -37,36 +37,36 @@ namespace HelpACoder
 
                     foreach (var i in arr)
                     {
-                        //DateTime dt = new DateTime();
-                        //dt.AddMilliseconds(Double.Parse(i.startDate));
+                    if(i.startDate != null)
+                    {
+                        DateTime d2 = DateTime.Parse(i.startDate, null, System.Globalization.DateTimeStyles.RoundtripKind);
+                        i.startDate = d2.ToString();
 
-                        DateTime startTime = new DateTime(1970, 1, 1);
+                    }
 
-                        TimeSpan time = TimeSpan.FromMilliseconds(Double.Parse(i.startDate) + 19800000);
-                        i.startDate = startTime.Add(time).ToString();
-                        if (i.platform == "Codeforces")
+                    if (i.platform == "Codeforces")
                         {
-                            i.imageUrl = "~/images/codeforces_logo.png";
+                            i.imageUrl = "~/Content/images/codeforces_logo.png";
                         }
                         else if (i.platform == "CodeChef")
                         {
-                            i.imageUrl = "~/images/codechef_logo.png";
+                            i.imageUrl = "~/Content/images/codechef_logo.png";
                         }
                         else if (i.platform == "Spoj")
                         {
-                            i.imageUrl = "~/images/spoj_logo.png";
+                            i.imageUrl = "~/Content/images/spoj_logo.png";
                         }
                         else if (i.platform == "Topcoder")
                         {
-                            i.imageUrl = "~/images/topcoder_logo.png";
+                            i.imageUrl = "~/Content/images/topcoder_logo.png";
                         }
                         else if (i.platform == "HackerEarth")
                         {
-                            i.imageUrl = "~/images/hackerearth_logo.png";
+                            i.imageUrl = "~/Content/images/hackerearth_logo.png";
                         }
                         else if (i.platform == "HackerRank")
                         {
-                            i.imageUrl = "~/images/hackerrank_logo.png";
+                            i.imageUrl = "~/Content/images/hackerrank_logo.jpg";
                         }
 
                     }
@@ -76,13 +76,16 @@ namespace HelpACoder
                 else
                 {
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!try agian');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong');", true);
                 }
-            }
+          //  }
+            /*
+#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
+#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
-            }
+            }*/
         } 
 
     }

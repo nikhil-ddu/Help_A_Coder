@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -32,9 +30,7 @@ namespace HelpACoder
         {
             try
             {
-
-
-                var response = await client.GetAsync("http://webservices-dhavalmehta.rhcloud.com/webapi/problems");
+                var response = await client.GetAsync("https://web-crawler-java.herokuapp.com/webapi/problems");
                 if (response.IsSuccessStatusCode)
                 {
                     string responsestr = await response.Content.ReadAsStringAsync();
@@ -44,15 +40,15 @@ namespace HelpACoder
                     {
                         if (i.platform == "Codeforces")
                         {
-                            i.imageUrl = "~/images/codeforces_logo.png";
+                            i.imageUrl = "~/Content/images/codeforces_logo.png";
                         }
                         else if (i.platform == "HackerEarth")
                         {
-                            i.imageUrl = "~/images/hackerearth_logo.png";
+                            i.imageUrl = "~/Content/images/hackerearth_logo.png";
                         }
                         else if (i.platform == "Spoj")
                         {
-                            i.imageUrl = "~/images/spoj_logo.png";
+                            i.imageUrl = "~/Content/images/spoj_logo.png";
                         }
                     }
                     GridView1.DataSource = arr;
@@ -64,7 +60,9 @@ namespace HelpACoder
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
                 }
             }
+#pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch(Exception e)
+#pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
             }

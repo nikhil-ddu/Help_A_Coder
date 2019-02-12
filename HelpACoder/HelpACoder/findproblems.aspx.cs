@@ -4,7 +4,9 @@ using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+#pragma warning disable CS0105 // The using directive for 'System.Web' appeared previously in this namespace
 using System.Web;
+#pragma warning restore CS0105 // The using directive for 'System.Web' appeared previously in this namespace
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -36,15 +38,15 @@ namespace HelpACoder
                     {
                         if (i.platform == "Codeforces")
                         {
-                            i.imageUrl = "~/images/codeforces_logo.png";
+                            i.imageUrl = "~/Content/images/codeforces_logo.png";
                         }
                         else if (i.platform == "HackerEarth")
                         {
-                            i.imageUrl = "~/images/hackerearth_logo.png";
+                            i.imageUrl = "~/Content/images/hackerearth_logo.png";
                         }
                         else if (i.platform == "Spoj")
                         {
-                            i.imageUrl = "~/images/spoj_logo.png";
+                            i.imageUrl = "~/Content/images/spoj_logo.png";
                         }
                     }
                     GridView1.DataSource = arr;
@@ -75,7 +77,7 @@ namespace HelpACoder
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            String url = "http://webservices-dhavalmehta.rhcloud.com/webapi/problems?";
+            String url = "https://web-crawler-java.herokuapp.com/webapi/problems?";
             String tagstr = TextBox1.Text;
             
             string[] tags = tagstr.Split(',');
@@ -101,13 +103,12 @@ namespace HelpACoder
             {
                 url = url.Substring(0, url.Length - 1);
             }
-            if (url.Equals("http://webservices-dhavalmehta.rhcloud.com/webapi/problems?"))
+            if (url.Equals("https://web-crawler-java.herokuapp.com/webapi/problems?"))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Enter Some Information');", true);
             }
             else
             {
-               // ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('"+url+"');", true);
                 GetProblemsDetails(url);
 
             }
