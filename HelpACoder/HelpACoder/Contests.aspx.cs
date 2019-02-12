@@ -13,7 +13,7 @@ namespace HelpACoder
     class Contest
     {
         public string name { get; set; }
-       public  string contestUrl { get; set; }
+        public string contestUrl { get; set; }
         public string platform { get; set; }
         public string startDate { get; set; }
         public string imageUrl { get; set; }
@@ -27,8 +27,8 @@ namespace HelpACoder
         }
         private async void GetContestsDetails()
         {
-          //  try
-           // {
+            try
+            {
                 var response = await client.GetAsync("https://web-crawler-java.herokuapp.com/webapi/contests");
                 if (response.IsSuccessStatusCode)
                 {
@@ -37,36 +37,19 @@ namespace HelpACoder
 
                     foreach (var i in arr)
                     {
-                    if(i.startDate != null)
-                    {
-                        DateTime d2 = DateTime.Parse(i.startDate, null, System.Globalization.DateTimeStyles.RoundtripKind);
-                        i.startDate = d2.ToString();
+                        if (i.startDate != null)
+                        {
+                            DateTime d2 = DateTime.Parse(i.startDate, null, System.Globalization.DateTimeStyles.RoundtripKind);
+                            i.startDate = d2.ToString();
 
-                    }
-
-                    if (i.platform == "Codeforces")
-                        {
-                            i.imageUrl = "~/Content/images/codeforces_logo.png";
                         }
-                        else if (i.platform == "CodeChef")
-                        {
-                            i.imageUrl = "~/Content/images/codechef_logo.png";
-                        }
-                        else if (i.platform == "Spoj")
-                        {
-                            i.imageUrl = "~/Content/images/spoj_logo.png";
-                        }
-                        else if (i.platform == "Topcoder")
-                        {
-                            i.imageUrl = "~/Content/images/topcoder_logo.png";
-                        }
-                        else if (i.platform == "HackerEarth")
-                        {
-                            i.imageUrl = "~/Content/images/hackerearth_logo.png";
-                        }
-                        else if (i.platform == "HackerRank")
+                        if (i.platform == "HackerRank")
                         {
                             i.imageUrl = "~/Content/images/hackerrank_logo.jpg";
+                        }
+                        else
+                        {
+                            i.imageUrl = "~/Content/images/" + i.platform.ToLower() + "_logo.png";
                         }
 
                     }
@@ -76,17 +59,17 @@ namespace HelpACoder
                 else
                 {
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong! Try Again');", true);
                 }
-          //  }
-            /*
+            }
+
 #pragma warning disable CS0168 // The variable 'e' is declared but never used
             catch (Exception e)
 #pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
-            }*/
-        } 
+            }
+        }
 
     }
 }

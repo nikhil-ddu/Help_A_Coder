@@ -26,7 +26,7 @@ namespace HelpACoder
         public List<SampleInputOutput> sampleInputOutputs { get; set; }
         public List<string> tags { get; set; }
         public string explanation { get; set; }
-        
+
     }
     public partial class displayprobleminfo : System.Web.UI.Page
     {
@@ -35,17 +35,11 @@ namespace HelpACoder
         {
             if (!IsPostBack)
             {
-               string v =Request.QueryString["id"];
-                if(v!=null)
+                string v = Request.QueryString["id"];
+                if (v != null)
                 {
                     GetProblemInfo(int.Parse(v));
                 }
-                else
-                {
-                   // Label12.Visible = true;
-                    //TextBox1.Visible = true;
-                   // Button1.Visible = true;
-                }   
             }
         }
         private async void GetProblemInfo(int id)
@@ -64,20 +58,7 @@ namespace HelpACoder
                     string responsestr = await response.Content.ReadAsStringAsync();
                     var arr = JsonConvert.DeserializeObject<RootObject>(responsestr);
 
-                    if (arr.platform == "Codeforces")
-                    {
-                        Image1.ImageUrl = "~/Content/images/codeforces_logo.png";
-
-                    }
-                    else if (arr.platform == "HackerEarth")
-                    {
-                        Image1.ImageUrl = "~/Content/images/hackerearth_logo.png";
-
-                    }
-                    else if (arr.platform == "Spoj")
-                    {
-                        Image1.ImageUrl = "~/Content/images/spoj_logo.png";
-                    }
+                    Image1.ImageUrl = "~/Content/images/" + arr.platform.ToLower() + "_logo.png";
                     Label1.Text = "ID :" + arr.id.ToString();
                     Label2.Text = "TITLE :" + arr.title;
                     HyperLink1.NavigateUrl = arr.problemUrl;
@@ -109,7 +90,7 @@ namespace HelpACoder
 
                     Label9.Text = "TimeLimit :" + arr.timeLimit.ToString() + "(sec)";
 
-                    if (arr.tags != null &&arr.tags.Count!=0)
+                    if (arr.tags != null && arr.tags.Count != 0)
                     {
                         Label10.Visible = true;
                         GridView2.Visible = true;
@@ -123,13 +104,12 @@ namespace HelpACoder
                 }
                 else
                 {
-                    
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Enter Valid Id');", true);
                 }
-                
+
             }
 #pragma warning disable CS0168 // The variable 'e' is declared but never used
-            catch(Exception e)
+            catch (Exception e)
 #pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong please try again later!');", true);
@@ -138,8 +118,8 @@ namespace HelpACoder
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int id=0;
-            string s = TextBox1.Text; 
+            int id = 0;
+            string s = TextBox1.Text;
             try
             {
                 id = int.Parse(s);

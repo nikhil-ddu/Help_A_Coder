@@ -35,11 +35,9 @@ namespace HelpACoder
                     string responsestr = await response.Content.ReadAsStringAsync();
                     Tutorial tr = JsonConvert.DeserializeObject<Tutorial>(responsestr);
                     Label1.Text = tr.content;
-
                 }
                 else
                 {
-
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
                 }
             }
@@ -58,14 +56,13 @@ namespace HelpACoder
                 if (response.IsSuccessStatusCode)
                 {
                     string responsestr = await response.Content.ReadAsStringAsync();
-                    tutoriallist= JsonConvert.DeserializeObject<List<String>>(responsestr).ToList();
+                    tutoriallist = JsonConvert.DeserializeObject<List<String>>(responsestr).ToList();
                     DropDownList1.DataSource = tutoriallist;
                     DropDownList1.DataBind();
-                    
+
                 }
                 else
                 {
-
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Enter Valid Information');", true);
                 }
             }
@@ -75,14 +72,14 @@ namespace HelpACoder
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
             }
-       }
+        }
 
 
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetTutorial();
-            
+
         }
     }
 }

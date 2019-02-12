@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HelpACoder {
-    
-    
-    public partial class allproblems {
-        
+namespace HelpACoder
+{
+
+
+    public partial class allproblems
+    {
+
         /// <summary>
         /// GridView1 control.
         /// </summary>

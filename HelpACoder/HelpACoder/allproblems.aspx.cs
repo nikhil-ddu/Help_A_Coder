@@ -20,11 +20,10 @@ namespace HelpACoder
         static HttpClient client = new HttpClient();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 GetProblemsDetails();
             }
-            
         }
         private async void GetProblemsDetails()
         {
@@ -38,30 +37,23 @@ namespace HelpACoder
 
                     foreach (var i in arr)
                     {
-                        if (i.platform == "Codeforces")
+                        string platform = "";
+                        if (i.platform != null)
                         {
-                            i.imageUrl = "~/Content/images/codeforces_logo.png";
+                            platform = i.platform.ToLower();
                         }
-                        else if (i.platform == "HackerEarth")
-                        {
-                            i.imageUrl = "~/Content/images/hackerearth_logo.png";
-                        }
-                        else if (i.platform == "Spoj")
-                        {
-                            i.imageUrl = "~/Content/images/spoj_logo.png";
-                        }
+                        i.imageUrl = "~/Content/images/" + platform + "_logo.png";
                     }
                     GridView1.DataSource = arr;
                     GridView1.DataBind();
                 }
                 else
                 {
-
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
                 }
             }
 #pragma warning disable CS0168 // The variable 'e' is declared but never used
-            catch(Exception e)
+            catch (Exception e)
 #pragma warning restore CS0168 // The variable 'e' is declared but never used
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
@@ -71,9 +63,8 @@ namespace HelpACoder
         {
             if (e.CommandName == "More")
             {
-                
-                int id =int.Parse( e.CommandArgument.ToString());
-                Response.Redirect("displayprobleminfo.aspx?id="+id);
+                int id = int.Parse(e.CommandArgument.ToString());
+                Response.Redirect("displayprobleminfo.aspx?id=" + id);
             }
         }
 

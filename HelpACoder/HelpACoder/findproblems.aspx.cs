@@ -17,59 +17,48 @@ namespace HelpACoder
         static HttpClient client = new HttpClient();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
         }
         private async void GetProblemsDetails(string url)
         {
             try
             {
-               // ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" + url + "');", true);
+
                 var response = await client.GetAsync(url);
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" + url + "');", true);
                 if (response.IsSuccessStatusCode)
                 {
-                  //  ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" + url + "');", true);
                     GridView1.Visible = true;
                     string responsestr = await response.Content.ReadAsStringAsync();
                     //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" + responsestr + "');", true);
                     var arr = JsonConvert.DeserializeObject<Problem[]>(responsestr).ToList();
                     foreach (var i in arr)
                     {
-                        if (i.platform == "Codeforces")
+                        string platform = "";
+                        if (i.platform != null)
                         {
-                            i.imageUrl = "~/Content/images/codeforces_logo.png";
+                            platform = i.platform.ToLower();
                         }
-                        else if (i.platform == "HackerEarth")
-                        {
-                            i.imageUrl = "~/Content/images/hackerearth_logo.png";
-                        }
-                        else if (i.platform == "Spoj")
-                        {
-                            i.imageUrl = "~/Content/images/spoj_logo.png";
-                        }
+                        i.imageUrl = "~/Content/images/" + platform + "_logo.png";
                     }
                     GridView1.DataSource = arr;
                     GridView1.DataBind();
                 }
                 else
                 {
-
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Enter Valid Information');", true);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" +e.Message + "');", true);
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Something Went Wrong!Try again');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" + e.Message + "');", true);
             }
         }
         protected void gridMembersList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "More")
             {
-               
                 int id = int.Parse(e.CommandArgument.ToString());
                 Response.Redirect("displayprobleminfo.aspx?id=" + id);
             }
@@ -79,7 +68,7 @@ namespace HelpACoder
         {
             String url = "https://web-crawler-java.herokuapp.com/webapi/problems?";
             String tagstr = TextBox1.Text;
-            
+
             string[] tags = tagstr.Split(',');
             foreach (string word in tags)
             {
@@ -90,7 +79,6 @@ namespace HelpACoder
             }
 
             String platformstr = TextBox2.Text;
-
             string[] platforms = platformstr.Split(',');
             foreach (string word in platforms)
             {
@@ -110,9 +98,8 @@ namespace HelpACoder
             else
             {
                 GetProblemsDetails(url);
-
             }
         }
     }
-    
+
 }
